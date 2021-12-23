@@ -37,9 +37,4 @@ public class Persona {
     public void setBody(String body) {
         this.body = body;
     }
-
-
-
-
-    
 }
