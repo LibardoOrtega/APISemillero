@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="fondocard">#E4E4E4</color>
     <color name="gray">#BFBFBF</color>
+    <color name="letra1">#20201F</color>
+    <color name="letra2">#A4A4A5</color>
 </resources>
