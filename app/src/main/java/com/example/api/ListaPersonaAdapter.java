@@ -24,14 +24,20 @@ public class ListaPersonaAdapter extends RecyclerView.Adapter<ListaPersonaAdapte
     private List<Persona> originalItems;
     private LayoutInflater mInflater;
     private Context context;
+    final ListaPersonaAdapter.OnItemClickListener listener;
+
+    public interface OnItemClickListener{
+        void onItemClick(Persona item);
+    }
 
 
-    public ListaPersonaAdapter(List<Persona> itemList, Context context){
+    public ListaPersonaAdapter(List<Persona> itemList, Context context, ListaPersonaAdapter.OnItemClickListener listener){
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
         this.originalItems = new ArrayList<>();
         originalItems.addAll(itemList);
+        this.listener = listener;
     }
 
     @Override
@@ -88,17 +94,23 @@ public class ListaPersonaAdapter extends RecyclerView.Adapter<ListaPersonaAdapte
         ViewHolder(View itemView){
             super(itemView);
             iconImage = itemView.findViewById(R.id.iconImageView);
-            userId = itemView.findViewById(R.id.userId);
-            id = itemView.findViewById(R.id.id);
+            //userId = itemView.findViewById(R.id.userId);
+            //id = itemView.findViewById(R.id.id);
             title= itemView.findViewById(R.id.title);
             body = itemView.findViewById(R.id.body);
 
         }
         void bindData(@NonNull final Persona item){
-            userId.setText(item.getUserId());
-            id.setText(item.getId());
+            //userId.setText(item.getUserId());
+            //id.setText(item.getId());
             title.setText(item.getTitle());
             body.setText(item.getBody());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
         }
     }
 }

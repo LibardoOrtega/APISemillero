@@ -1,6 +1,8 @@
 package com.example.api;
 
-public class Persona {
+import java.io.Serializable;
+
+public class Persona implements Serializable {
     private String userId;
     private String id;
     private String title;

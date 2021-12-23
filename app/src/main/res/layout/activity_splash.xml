@@ -24,14 +24,14 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv1splash"
         android:layout_width="320dp"
         android:layout_height="80dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView2"
-        android:text="Find & Apply              Your Dream Job"
+        android:text="Find y Apply              Your Dream Job"
         android:gravity="center"
         android:textAlignment="center"
         android:textSize="30dp"
@@ -39,7 +39,7 @@
         android:textColor="@color/letra1"/>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv2splash"
         android:layout_width="280dp"
         android:layout_height="150dp"
         android:layout_marginTop="20dp"
@@ -52,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/tv1splash" />
 
     <Button
         android:layout_width="200dp"
