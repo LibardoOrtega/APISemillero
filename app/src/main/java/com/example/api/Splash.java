@@ -3,8 +3,11 @@ package com.example.api;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +22,8 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         ActionBar actionBar = getSupportActionBar();
         if(actionBar!=null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -32,5 +37,10 @@ public class Splash extends AppCompatActivity {
         tv1splash.setText(element.getTitle());
         tv2splash.setText(element.getBody());
         //iconImageView.setImageIcon(Icon );
+    }
+
+    public void regresar(View view){
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
     }
 }
