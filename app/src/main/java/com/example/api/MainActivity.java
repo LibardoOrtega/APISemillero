@@ -27,7 +27,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
-     private TextView mJsonTxtView;
      List<Persona> elements;
      private RecyclerView recyclerView;
      private ListaPersonaAdapter listAdapter;
@@ -44,8 +43,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         recyclerView = findViewById(R.id.listrecyclerview);
         search = findViewById(R.id.search);
-
-        //mJsonTxtView = findViewById(R.id.jsonText);
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://jsonplaceholder.typicode.com/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -63,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             }
         });
     }
+
     private void  initListener(){
         search.setOnQueryTextListener(this);
     }
