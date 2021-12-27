@@ -13,11 +13,8 @@
         android:theme="@style/Theme.API">
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:parentActivityName=".Splash">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Splash" />
+            android:theme="@style/SplashTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
