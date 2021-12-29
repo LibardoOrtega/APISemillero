@@ -17,11 +17,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:cardCornerRadius="80dp">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/ic_regresar"/>
 
     </androidx.cardview.widget.CardView>
 
