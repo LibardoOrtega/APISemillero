@@ -28,8 +28,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
-     List<Persona> elements;
      private RecyclerView recyclerView;
+     List<Persona> mData;
      private ListaPersonaAdapter listAdapter;
      private Retrofit retrofit;
      private SearchView search;
@@ -47,6 +47,11 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         setContentView(R.layout.activity_main);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        decorView.setSystemUiVisibility(uiOptions);
 
         recyclerView = findViewById(R.id.listrecyclerview);
         search = findViewById(R.id.search);
@@ -73,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     private void getPersona(Context context) {
-        //System.out.printf("DENTRO DE PERSONA");
         PersonaapiService personaapiService = retrofit.create(PersonaapiService.class);
         Call<List<Persona>> listCall = personaapiService.getPersona();
         listCall.enqueue(new Callback<List<Persona>>() {
@@ -81,7 +85,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             public void onResponse(Call<List<Persona>> call, Response<List<Persona>> response) {
                 if(response.isSuccessful()){
                     List<Persona> listPer = response.body();
-                    //System.out.printf("PERSONA :::::::::::::::::::::::::::"+listPer.get(0).getBody());
                     showData(listPer, context);
                 }
             }
@@ -117,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        listAdapter.filter(newText);
+        //listAdapter.getFilter().filter(newText);
         return false;
     }
 }
