@@ -34,8 +34,8 @@ public class Splash extends AppCompatActivity {
         tv2splash = findViewById(R.id.tv2splash);
         iconImageView = findViewById(R.id.iconImageView);
 
-        tv1splash.setText(element.getTitle());
-        tv2splash.setText(element.getBody());
+        tv1splash.setText(element.getId());
+        tv2splash.setText(element.getTitle());
         //iconImageView.setImageIcon(Icon );
     }
 
