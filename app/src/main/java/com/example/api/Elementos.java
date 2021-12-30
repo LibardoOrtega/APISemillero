@@ -47,7 +47,6 @@ public class Splash extends AppCompatActivity {
     }
 
     public void regresar(View view){
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
+        onBackPressed();
     }
 }
