@@ -3,22 +3,18 @@ package com.example.api;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.api.persona.PersonaapiService;
 
-import java.io.IOError;
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,11 +25,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
      private RecyclerView recyclerView;
-     List<Persona> mData;
+     private List<Persona> listAux;
      private ListaPersonaAdapter listAdapter;
      private Retrofit retrofit;
      private SearchView search;
-     private ImageView regresar;
+     public static Bitmap bitMapImage =  null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,15 +59,15 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         initListener();
         getPersona(this);
 
-        regresar = (ImageView) findViewById(R.id.regresar);
+       /* regresar = (ImageView) findViewById(R.id.regresar);
         regresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Splash.class);
+                Intent i = new Intent(MainActivity.this, Elementos.class);
                 startActivity(i);
                 //onBackPressed();
             }
-        });
+        });*/
     }
 
     private void  initListener(){
@@ -85,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             public void onResponse(Call<List<Persona>> call, Response<List<Persona>> response) {
                 if(response.isSuccessful()){
                     List<Persona> listPer = response.body();
+                    listAux = listPer;
                     showData(listPer, context);
                 }
             }
@@ -97,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     }
     private void showData(List<Persona> listPersona, Context context){
-        ListaPersonaAdapter listAdapter = new ListaPersonaAdapter(listPersona, context, new ListaPersonaAdapter.OnItemClickListener() {
+         listAdapter = new ListaPersonaAdapter(listPersona, context, new ListaPersonaAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Persona item) {
                 moveToDescription(item);
@@ -108,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     public void moveToDescription(Persona item){
-        Intent i = new Intent(this, Splash.class);
+        Intent i = new Intent(this, Elementos.class);
         i.putExtra("Persona", item);
         startActivity(i);
     }
@@ -120,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        //listAdapter.getFilter().filter(newText);
+        listAdapter.getFilter().filter(newText);
         return false;
     }
 }

@@ -1,5 +1,7 @@
 package com.example.api;
 
+import android.graphics.drawable.Icon;
+
 import java.io.Serializable;
 
 public class Persona implements Serializable {
@@ -7,6 +9,15 @@ public class Persona implements Serializable {
     private String id;
     private String title;
     private String body;
+    private Icon iconImage;
+
+    public Icon getIconImage() {
+        return iconImage;
+    }
+
+    public void setIconImage(Icon iconImage) {
+        this.iconImage = iconImage;
+    }
 
     public String getUserId() {
         return userId;

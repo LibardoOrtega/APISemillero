@@ -1,28 +1,28 @@
 package com.example.api;
 
-import androidx.annotation.RequiresApi;
+import static com.example.api.MainActivity.bitMapImage;
+import static com.example.api.utils.Utils.convertBitmapToImagenView;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.drawable.Icon;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Splash extends AppCompatActivity {
 
-    TextView tv1splash;
-    TextView tv2splash;
-    ImageView iconImageView;
+public class Elementos extends AppCompatActivity {
+
+    private TextView tv1elementos;
+    private TextView tv2elementos;
+    private ImageView imageDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_elementos);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -37,13 +37,13 @@ public class Splash extends AppCompatActivity {
         }
 
         Persona element = (Persona) getIntent().getSerializableExtra("Persona");
-        tv1splash = findViewById(R.id.tv1splash);
-        tv2splash = findViewById(R.id.tv2splash);
-        iconImageView = findViewById(R.id.imageView);
+        tv1elementos = findViewById(R.id.tv1elementos);
+        tv2elementos = findViewById(R.id.tv2elementos);
+        imageDescription = findViewById(R.id.imageDescription);
 
-        tv1splash.setText(element.getId());
-        tv2splash.setText(element.getTitle());
-        iconImageView.setImageIcon(element.getIconImage());
+        tv1elementos.setText(element.getId());
+        tv2elementos.setText(element.getTitle());
+        imageDescription.setImageDrawable(convertBitmapToImagenView(bitMapImage, this));
     }
 
     public void regresar(View view){
