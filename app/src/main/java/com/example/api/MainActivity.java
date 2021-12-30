@@ -10,8 +10,12 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import com.example.api.persona.PersonaapiService;
 
@@ -59,15 +63,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         initListener();
         getPersona(this);
 
-       /* regresar = (ImageView) findViewById(R.id.regresar);
-        regresar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Elementos.class);
-                startActivity(i);
-                //onBackPressed();
-            }
-        });*/
     }
 
     private void  initListener(){
@@ -121,4 +116,27 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         listAdapter.getFilter().filter(newText);
         return false;
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.eliminar:
+                Toast.makeText(getBaseContext(), "Eliminar", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.subir:
+                Toast.makeText(getBaseContext(), "Subir", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.compartir:
+                Toast.makeText(getBaseContext(), "Compartir", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/cardview"
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
+        android:layout_width="25dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="end"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:cardBackgroundColor="#00FFFFFF"
+        app:cardElevation="0dp"
+        app:cardPreventCornerOverlap="false">
+
+        <ImageView
+            android:clickable="true"
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_more_vert"
+            android:background="@drawable/style_border"/>
+
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
         android:layout_marginVertical="10dp"
-        android:layout_width="match_parent"
+        android:layout_width="330dp"
         android:layout_height="100dp"
         android:layout_marginHorizontal="10dp"
         android:elevation="20dp"
@@ -15,14 +36,14 @@
         app:cardCornerRadius="30dp">
 
         <LinearLayout
-            android:layout_width="250dp"
+            android:layout_width="180dp"
             android:layout_height="match_parent"
             android:layout_margin="20dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/id"
-                android:layout_width="200dp"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="ID:1000000000"
@@ -32,7 +53,7 @@
 
             <TextView
                 android:id="@+id/title"
-                android:layout_width="200dp"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TITULOOO"

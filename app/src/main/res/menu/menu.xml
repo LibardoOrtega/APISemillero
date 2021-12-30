@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+   <item android:id="@+id/eliminar"
+       android:icon="@drawable/ic_baseline_cancel"
+       android:title="ELIMINAR"/>
+
+    <item android:id="@+id/subir"
+        android:icon="@drawable/ic_baseline_cloud_circle"
+        android:title="SUBIR"/>
+
+    <item android:id="@+id/compartir"
+        android:icon="@drawable/ic_baseline_share"
+        android:title="COMPARTIR"/>
+
 </menu>
