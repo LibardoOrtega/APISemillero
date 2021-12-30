@@ -1,14 +1,20 @@
 package com.example.api;
 
+import static com.example.api.MainActivity.bitMapImage;
+import static com.example.api.utils.Utils.convertImageViewToBitmap;
+
 import android.content.Context;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -16,10 +22,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.stream.Collectors;
 
-public class ListaPersonaAdapter extends RecyclerView.Adapter<ListaPersonaAdapter.ViewHolder> {
+public class ListaPersonaAdapter extends RecyclerView.Adapter<ListaPersonaAdapter.ViewHolder> implements Filterable {
     private List<Persona> mData;
     private List<Persona> originalItems;
     private LayoutInflater mInflater;
@@ -35,8 +39,8 @@ public class ListaPersonaAdapter extends RecyclerView.Adapter<ListaPersonaAdapte
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
-        this.originalItems = new ArrayList<>();
-        originalItems.addAll(itemList);
+        this.originalItems = new ArrayList<>(itemList);
+        //originalItems.addAll(itemList);
         this.listener = listener;
     }
 
@@ -45,28 +49,43 @@ public class ListaPersonaAdapter extends RecyclerView.Adapter<ListaPersonaAdapte
         return mData.size();
     }
 
-    public void filter(String strSeatch){
-        if(strSeatch.length() == 0){
-            mData.clear();
-            mData.addAll(originalItems);
-        }else{
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                List<Persona> collect = mData.stream()
-                        .filter(i -> i.getTitle().toLowerCase(Locale.ROOT).contains(strSeatch))
-                        .collect(Collectors.toList());
-                mData.clear();
-                mData.addAll(collect);
-            }
-            else{
-                for (Persona p : originalItems) {
-                    if (p.getTitle().toLowerCase().contains(strSeatch)){
-                        mData.add(p);
+    @Override
+    public Filter getFilter(){
+        return exampleFilter;
+    }
+
+    private Filter exampleFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Persona> filteredList = new ArrayList<>();
+
+            if (constraint.toString().isEmpty()){
+                filteredList.addAll(originalItems);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (Persona item : originalItems){
+                    if (item.getId().toLowerCase().contains(filterPattern)){
+                        filteredList.add(item);
+                    }
+                    if (item.getTitle().toLowerCase().contains(filterPattern)){
+                        filteredList.add(item);
                     }
                 }
             }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
         }
-        notifyDataSetChanged();
-    }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mData.clear();
+            mData.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     @Override
     public ListaPersonaAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -74,6 +93,7 @@ public class ListaPersonaAdapter extends RecyclerView.Adapter<ListaPersonaAdapte
         return new ListaPersonaAdapter.ViewHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull final ListaPersonaAdapter.ViewHolder holder, final int position) {
         holder.bindData(mData.get(position));
@@ -94,21 +114,20 @@ public class ListaPersonaAdapter extends RecyclerView.Adapter<ListaPersonaAdapte
         ViewHolder(View itemView){
             super(itemView);
             iconImage = itemView.findViewById(R.id.iconImageView);
-            //userId = itemView.findViewById(R.id.userId);
-            //id = itemView.findViewById(R.id.id);
+            id = itemView.findViewById(R.id.id);
             title= itemView.findViewById(R.id.title);
-            body = itemView.findViewById(R.id.body);
 
         }
+        @RequiresApi(api = Build.VERSION_CODES.M)
         void bindData(@NonNull final Persona item){
-            //userId.setText(item.getUserId());
-            //id.setText(item.getId());
+            iconImage.setImageIcon(item.getIconImage());
+            id.setText(item.getId());
             title.setText(item.getTitle());
-            body.setText(item.getBody());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     listener.onItemClick(item);
+                    bitMapImage = convertImageViewToBitmap(iconImage);
                 }
             });
         }
