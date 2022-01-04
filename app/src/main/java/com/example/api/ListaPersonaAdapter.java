@@ -1,6 +1,6 @@
 package com.example.api;
 
-import static com.example.api.MainActivity.bitMapImage;
+import static com.example.api.View.MainActivity.bitMapImage;
 import static com.example.api.utils.Utils.convertImageViewToBitmap;
 
 import android.content.Context;
@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.api.Interactors.Persona;
 
 import java.util.ArrayList;
 import java.util.List;

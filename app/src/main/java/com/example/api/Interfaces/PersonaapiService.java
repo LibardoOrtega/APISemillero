@@ -1,6 +1,6 @@
-package com.example.api.persona;
+package com.example.api.Interfaces;
 
-import com.example.api.Persona;
+import com.example.api.Interactors.Persona;
 
 import java.util.List;
 

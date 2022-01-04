@@ -1,6 +1,6 @@
-package com.example.api;
+package com.example.api.View;
 
-import static com.example.api.MainActivity.bitMapImage;
+import static com.example.api.View.MainActivity.bitMapImage;
 import static com.example.api.utils.Utils.convertBitmapToImagenView;
 
 import androidx.appcompat.app.ActionBar;
@@ -11,6 +11,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.api.Interactors.Persona;
+import com.example.api.R;
 
 
 public class Elementos extends AppCompatActivity {

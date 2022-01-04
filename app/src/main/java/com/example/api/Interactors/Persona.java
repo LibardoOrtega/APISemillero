@@ -1,4 +1,4 @@
-package com.example.api;
+package com.example.api.Interactors;
 
 import android.graphics.drawable.Icon;
 

@@ -1,4 +1,4 @@
-package com.example.api;
+package com.example.api.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -13,11 +13,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import com.example.api.persona.PersonaapiService;
+import com.example.api.ListaPersonaAdapter;
+import com.example.api.Interactors.Persona;
+import com.example.api.R;
+import com.example.api.Interfaces.PersonaapiService;
 
 import java.util.List;
 
@@ -38,15 +39,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         setTheme(R.style.Theme_API);
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         View decorView = getWindow().getDecorView();

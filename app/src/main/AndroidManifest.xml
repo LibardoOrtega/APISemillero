@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.API">
         <activity
-            android:name=".MainActivity"
+            android:name=".View.MainActivity"
             android:theme="@style/SplashTheme"
             android:exported="true">
             <intent-filter>
@@ -22,12 +22,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Elementos"
+            android:name=".View.Elementos"
             android:exported="true"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".View.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".View.MainActivity" />
             <intent-filter>
                 <action android:name="android.intent.action.Splash" />
 
